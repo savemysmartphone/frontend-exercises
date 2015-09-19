@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<script type='text/javascript'>
+		function sum() {
+			var res = 0;
+			for(var i of arguments) //this allows to sum a variable number of args, case 1
+				res += i;
+
+			function f (a){ //sum(x) returns a function f, which allows case 2: sum(x)(y)
+				res += a;
+				return res;
+			}
+
+			if (arguments.length === 1) //makes sure that the closure is not used in case 1
+				return f;
+			else 
+				return res;
+		}
+		console.log(sum(2, 3) === 5); //case 1
+		console.log(sum(2)(3) === 5); //case 2
+	</script>
+	</head>
+</html>
