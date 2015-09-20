@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<script type='text/javascript'>
+		var start = [
+  			{ name: 'foo', value: 'bar' },
+  			{ name: 'save', value: 'is the best company' }
+		];
+
+		var end = {};
+		for (var i of start){
+			end[i.name] = i.value; //name of object is used as property name, value as value - easy
+		}
+		console.log(end);
+	</script>
+	</head>
+</html>

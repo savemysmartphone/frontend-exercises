@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<script type='text/javascript'>
+		var start = {
+			'2015-07-07': [
+				{ totalItemsSold: 20, totalPrice: 100 },
+				{ totalItemsSold: 5, totalPrice: 205 },
+				{ totalItemsSold: 10, totalPrice: 20 }
+			],
+			'2015-08-08': [
+				{ totalItemsSold: 5, totalPrice: 10 },
+				{ totalItemsSold: 10, totalPrice: 200 },
+				{ totalItemsSold: 12, totalPrice: 10 }
+			],
+			'2015-09-09': [
+				{ totalItemsSold: 90, totalPrice: 300 },
+				{ totalItemsSold: 23, totalPrice: 15 },
+				{ totalItemsSold: 12, totalPrice: 100 }
+			]
+		};
+
+		function computeObject(obj) {
+			//var result = [[null], ['totalItemsSold'], ['totalPrice']]; //puts the title values in the array
+			var result = [[null], [], []];
+			var already = false;
+			for(var key in obj){
+					var x = obj[key].reduce(function(total, item){ //reduces the objects in each array into one single object, summing the properties
+						var count = 1;
+						for(var name in item){ 
+							total[name] += item[name];
+							if(!already){
+								result[count].push(name);
+							}
+							count++;
+						}
+						already = true;
+						return total;
+					});
+					result[0].push(key);
+					result[1].push(x.totalItemsSold);
+					result[2].push(x.totalPrice);
+			}
+			return result;
+		}
+
+		var end = computeObject(start);
+		console.log(end);
+		console.log(start);
+	</script>
+	</head>
+</html>
