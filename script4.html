@@ -21,11 +21,20 @@
 		};
 
 		function computeObject(obj) {
-			var result = [[null], ['totalItemsSold'], ['totalPrice']]; //puts the title values in the array
+			//var result = [[null], ['totalItemsSold'], ['totalPrice']]; //puts the title values in the array
+			var result = [[null], [], []];
+			var already = false;
 			for(var key in obj){
 					var x = obj[key].reduce(function(total, item){ //reduces the objects in each array into one single object, summing the properties
-						total.totalItemsSold += item.totalItemsSold;
-						total.totalPrice += item.totalPrice;
+						for(var name in item){ 
+							var count = 1;
+							total[name] += item[name];
+							if(!already){
+								result[count].push(name);
+								already = true;
+							}
+							count++;
+						}
 						return total;
 					});
 					result[0].push(key);
